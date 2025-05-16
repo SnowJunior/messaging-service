@@ -1,5 +1,6 @@
 package com.sgasecurity.messaging_service.producer;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sgasecurity.messaging_service.DTO.SafaricomRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -9,13 +10,10 @@ import org.springframework.stereotype.Component;
 public class MessageProducer {
 
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private KafkaTemplate<String, SafaricomRequestDTO> kafkaTemplate;
 
-    public void sendMessage(String topic, String message) {
+    public void sendMessage(String topic, SafaricomRequestDTO message) throws JsonProcessingException {
+
         kafkaTemplate.send(topic, message);
     }
-
-//    public void mpesaProducer(String topic, SafaricomRequestDTO message) {
-//        kafkaTemplate.send(topic, message);
-//    }
 }

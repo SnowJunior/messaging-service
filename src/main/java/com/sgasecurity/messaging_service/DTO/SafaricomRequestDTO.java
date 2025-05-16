@@ -4,13 +4,8 @@ import lombok.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class SafaricomRequestDTO {
-    public SafaricomRequestDTO(String topic, String merchantRequestId, String checkoutRequestId, String amount) {
-        this.topic = topic;
-        this.merchantRequestId = merchantRequestId;
-        this.checkoutRequestId = checkoutRequestId;
-        this.amount = amount;
-    }
 
     private String topic;
     private String merchantRequestId;
