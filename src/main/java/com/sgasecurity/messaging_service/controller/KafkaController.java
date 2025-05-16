@@ -1,5 +1,7 @@
 package com.sgasecurity.messaging_service.controller;
 
+import com.sgasecurity.messaging_service.DTO.KafkaMessageDTO;
+import com.sgasecurity.messaging_service.DTO.SafaricomRequestDTO;
 import com.sgasecurity.messaging_service.producer.MessageProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,8 +16,14 @@ public class KafkaController {
 
 
     @PostMapping(path = "/send")
-    public String sendMessage(@RequestBody String message) {
-        producer.sendMessage("transactions", message);
-        return "Sent message: " + message;
+    public String sendMessage(@RequestBody KafkaMessageDTO request) {
+        producer.sendMessage("transactions", request.getMessage());
+        return "Sent message: " + request.getMessage();
     }
+
+//    @PostMapping(path = "/mpesa")
+//    public String createMpesaEvent(@RequestBody SafaricomRequestDTO request) {
+//        producer.mpesaProducer("transactions", request);
+//        return "Sent message: " + request;
+//    }
 }
